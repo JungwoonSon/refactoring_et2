@@ -63,19 +63,19 @@ function statement(invoice, plays) {
   result += `적립 포인트: ${volumeCredits}점\n`;
   return result;
 
-  function amountFor(perf, play) {
+  function amountFor(aPerformance, play) {
     let result = 0;
     switch (play.type) {
       case 'tragedy': // 비국
         thisAmount = 40000;
-        if (perf.audience > 30) {
-          thisAmount += 1000 * (perf.audience - 30);
+        if (aPerformance.audience > 30) {
+          thisAmount += 1000 * (aPerformance.audience - 30);
         }
         break;
       case 'comedy': // 희극
         thisAmount = 30000;
-        if (perf.audience > 20) {
-          thisAmount += 10000 + 500 * (perf.audience - 20);
+        if (aPerformance.audience > 20) {
+          thisAmount += 10000 + 500 * (aPerformance.audience - 20);
         }
         break;
       default:
