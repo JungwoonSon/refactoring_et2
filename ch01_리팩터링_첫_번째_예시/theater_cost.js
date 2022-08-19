@@ -64,7 +64,7 @@ function statement(invoice, plays) {
   return result;
 
   function amountFor(perf, play) {
-    let thisAmount = 0;
+    let result = 0;
     switch (play.type) {
       case 'tragedy': // 비국
         thisAmount = 40000;
@@ -82,6 +82,6 @@ function statement(invoice, plays) {
         throw new Error(`알 수 없는 장르: ${play.type}`);
     }
 
-    return thisAmount;
+    return result;
   }
 }
