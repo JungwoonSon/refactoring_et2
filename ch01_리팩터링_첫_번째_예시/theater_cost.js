@@ -3,12 +3,12 @@ function statement(invoice, plays) {
 }
 
 function createStatementData(invoice, plays) {
-  const statementData = {};
-  statementData.customer = invoice.customer;
-  statementData.performances = invoice.performances.map(enrichPerformance);
-  statementData.totalAmount = totalAmount(statementData);
-  statementData.totalVolumeCredits = totalVolumeCredits(statementData);
-  return statementData;
+  const result = {};
+  result.customer = invoice.customer;
+  result.performances = invoice.performances.map(enrichPerformance);
+  result.totalAmount = totalAmount(result);
+  result.totalVolumeCredits = totalVolumeCredits(result);
+  return result;
 
   function enrichPerformance(aPerformance) {
     const result = Object.assign({}, aPerformance); // 얕은 복사 수행
@@ -45,11 +45,11 @@ function createStatementData(invoice, plays) {
   }
 
   function volumeCreditsFor(aPerformance) {
-    let volumeCredits = 0;
-    volumeCredits += Math.max(aPerformance.audience - 30, 0);
+    let result = 0;
+    result += Math.max(aPerformance.audience - 30, 0);
     if ('comedy' === aPerformance.play.type)
-      volumeCredits += Math.floor(aPerformance.audience / 5);
-    return volumeCredits;
+      result += Math.floor(aPerformance.audience / 5);
+    return result;
   }
 
   function totalVolumeCredits(data) {
