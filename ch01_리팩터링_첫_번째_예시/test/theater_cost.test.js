@@ -1,4 +1,4 @@
-const theaterCost = require('../theater_cost.js');
+const statement = require('../statement.js');
 
 const plays = {
   hamlet: {
@@ -36,8 +36,8 @@ const invoices = [
 ];
 
 describe('theater cost test', () => {
-  it('test', () => {
-    expect(theaterCost(invoices[0], plays)).toBe(
+  it('statement', () => {
+    expect(statement(invoices[0], plays)).toBe(
       '청구 내역 (고객명: BigCo)\n Hamlet: $650.00 (55석)\n As You Like It: $475.00 (35석)\n Othello: $500.00 (40석)\n총액: $1,625.00\n적립 포인트: 47점\n'
     );
   });
