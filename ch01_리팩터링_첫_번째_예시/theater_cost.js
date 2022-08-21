@@ -8,6 +8,7 @@ function statement(invoice, plays) {
     const result = Object.assign({}, aPerformance); // 얕은 복사 수행
     result.play = playFor(result);
     result.amount = amountFor(result);
+    result.volumeCredits = volumeCreditsFor(result);
     return result;
   }
 
@@ -36,6 +37,14 @@ function statement(invoice, plays) {
 
     return result;
   }
+
+  function volumeCreditsFor(aPerformance) {
+    let volumeCredits = 0;
+    volumeCredits += Math.max(aPerformance.audience - 30, 0);
+    if ('comedy' === aPerformance.play.type)
+      volumeCredits += Math.floor(aPerformance.audience / 5);
+    return volumeCredits;
+  }
 }
 
 function renderPlainText(data) {
@@ -49,14 +58,6 @@ function renderPlainText(data) {
   result += `적립 포인트: ${totalVolumeCredits()}점\n`;
   return result;
 
-  function volumeCreditsFor(aPerformance) {
-    let volumeCredits = 0;
-    volumeCredits += Math.max(aPerformance.audience - 30, 0);
-    if ('comedy' === aPerformance.play.type)
-      volumeCredits += Math.floor(aPerformance.audience / 5);
-    return volumeCredits;
-  }
-
   function usd(aNumber) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -68,7 +69,7 @@ function renderPlainText(data) {
   function totalVolumeCredits() {
     let volumeCredits = 0;
     for (let perf of data.performances) {
-      volumeCredits += volumeCreditsFor(perf);
+      volumeCredits += perf.volumeCredits;
     }
     return volumeCredits;
   }
