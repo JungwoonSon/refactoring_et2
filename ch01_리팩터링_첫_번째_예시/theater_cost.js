@@ -1,38 +1,3 @@
-const plays = {
-  hamlet: {
-    name: 'Hamlet',
-    type: 'tragedy',
-  },
-  'as-like': {
-    name: 'As You Like It',
-    type: 'comedy',
-  },
-  othello: {
-    name: 'Othello',
-    type: 'tragedy',
-  },
-};
-
-const invoices = [
-  {
-    customer: 'BigCo',
-    performances: [
-      {
-        playID: 'hamlet',
-        audience: 55,
-      },
-      {
-        playID: 'as-like',
-        audience: 35,
-      },
-      {
-        playID: 'othello',
-        audience: 40,
-      },
-    ],
-  },
-];
-
 function statement(invoice, plays) {
   let totalAmount = 0;
 
@@ -53,16 +18,16 @@ function statement(invoice, plays) {
   function amountFor(aPerformance) {
     let result = 0;
     switch (playFor(aPerformance).type) {
-      case 'tragedy': // 비국
-        thisAmount = 40000;
+      case 'tragedy': // 비극
+        result = 40000;
         if (aPerformance.audience > 30) {
-          thisAmount += 1000 * (aPerformance.audience - 30);
+          result += 1000 * (aPerformance.audience - 30);
         }
         break;
       case 'comedy': // 희극
-        thisAmount = 30000;
+        result = 30000;
         if (aPerformance.audience > 20) {
-          thisAmount += 10000 + 500 * (aPerformance.audience - 20);
+          result += 10000 + 500 * (aPerformance.audience - 20);
         }
         break;
       default:
@@ -85,7 +50,7 @@ function statement(invoice, plays) {
   }
 
   function usd(aNumber) {
-    new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimuumFractionDigits: 2,
@@ -100,3 +65,5 @@ function statement(invoice, plays) {
     return volumeCredits;
   }
 }
+
+module.exports = statement;
