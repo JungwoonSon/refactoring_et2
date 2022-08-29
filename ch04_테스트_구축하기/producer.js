@@ -26,7 +26,7 @@ class Producer {
     const amount = parseInt(amountStr);
     const newProduction = Number.isNaN(amount) ? 0 : amount;
     this._province.totalProduction += newProduction - this._production;
-    this._production = new newProduction;
+    this._production = newProduction;
   }
 }
 
