@@ -1,3 +1,5 @@
+const Producer = require("./producer");
+
 class Province {
   constructor(doc) {
     this._name = doc.name;
@@ -70,3 +72,5 @@ class Province {
     return result;
   }
 }
+
+module.exports = Province;

@@ -29,3 +29,5 @@ class Producer {
     this._production = new newProduction;
   }
 }
+
+module.exports = Producer;
