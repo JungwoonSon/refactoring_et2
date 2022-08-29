@@ -1,0 +1,17 @@
+{
+  "name": "refactoring_et2_ch04",
+  "version": "1.0.0",
+  "description": "",
+  "main": "producer.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.0.1"
+  },
+  "dependencies": {
+    "@types/jest": "^28.1.8"
+  }
+}
