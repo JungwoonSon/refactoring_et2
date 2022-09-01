@@ -31,7 +31,7 @@ class Province {
   }
 
   set demand(arg) {
-    this.demand = parseInt(arg);
+    this._demand = parseInt(arg);
   }
 
   get price() {
