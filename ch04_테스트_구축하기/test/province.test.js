@@ -33,6 +33,12 @@ describe('province', () => {
     expect(asia.shortFall).toBe(-26);
     expect(asia.profit).toBe(-10);
   });
+
+  it('empty string demand', () => {
+    asia.demand = "";
+    expect(asia.shortFall).toBe(NaN);
+    expect(asia.profit).toBe(NaN);
+  });
 });
 
 describe('no producers', () => {
