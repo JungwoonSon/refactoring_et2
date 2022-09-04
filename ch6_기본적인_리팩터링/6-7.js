@@ -1,6 +1,6 @@
-let a = height * width;
+let area = width * height;
 
-const cpyNm = '애크미 구스베리';
+const companyName = '애크미 구스베리';
 
-let tpHd = 'untitled';
-let result = `<h1>${tpHd}</h1>`;
+let title = 'untitled';
+let result = `<h1>${title}</h1>`;
