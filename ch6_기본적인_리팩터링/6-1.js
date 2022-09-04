@@ -1,27 +1,40 @@
-export function printOwing(invoice) {
-  let outstanding = 0;
-
+function printBanner() {
   console.log('*****************');
   console.log('**** 고객 채무 ****');
   console.log('*****************');
+}
 
-  // 미해결 채무(outstanding)를 계산한다.
+function calculateOutstanding(invoice) {
+  let result = 0;
   for (const o of invoice.orders) {
-    outstanding += o.amount;
+    result += o.amount;
   }
+  return result;
+}
 
-  // 마감일(dueDate)을 기록한다.
+function recordDueDate(invoice) {
   const today = new Date();
   invoice.dueDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 30
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + 30
   );
+}
 
-  // 세부 사항을 출력한다.
+function printDetails(invoice, outstanding) {
   console.log(`name: ${invoice.customer}`);
   console.log(`amount: ${outstanding}`);
   console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
+}
+
+export function printOwing(invoice) {
+  printBanner();
+
+  let outstanding = calculateOutstanding(invoice);
+
+  recordDueDate(invoice);
+
+  printDetails(invoice, outstanding);
 }
 
 const invoice = {
