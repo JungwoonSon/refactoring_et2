@@ -62,3 +62,16 @@ describe('no producers', () => {
   });
 
 });
+
+describe('string for producers', () => {
+  it('', () => {
+    const data = {
+      name: "String producers",
+      producers: "",
+      demand: 30,
+      price: 20
+    };
+    const prov = new Province(data);
+    expect(prov.shortFall).toBe(0);
+  });
+});
