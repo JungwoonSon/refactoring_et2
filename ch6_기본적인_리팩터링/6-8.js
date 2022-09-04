@@ -1,6 +1,6 @@
 export function readingsOutsideRange(station, range) {
   return station.readings.filter(
-      (r) => range.notContains(r.temp)
+      (r) => !range.contains(r.temp)
   );
 }
 
@@ -21,8 +21,8 @@ export class NumberRange {
     return this.#max;
   }
 
-  notContains(temp) {
-    return temp < this.#min || temp > this.#max;
+  contains(temp) {
+    return temp >= this.#min && temp <= this.#max;
   }
 }
 
