@@ -1,16 +1,35 @@
 public static void main(String[] args) {
     try {
-        if (args.length == 0) throw new RuntimeException("파일명을 입력하세요.");
-        String filename = args[args.length -1];
-        File input = Paths.get(filename).toFile();
-        ObjectMapper mapper = new ObjectMapper();
-        Order[] orders = mapper.readValue(input, Order[].class);
-        if (Stream.of(args).anyMatch(arg -> "-r".equals(arg)))
-            System.out.println(Stream.of(orders).filter(0 -> "ready".equals(o.status)).count());
-        else
-            System.out.println(orders.length);
+        System.out.println(run(args));
     } catch (Exception e) {
         System.err.println(e);
         System.exit(1);
     }
+}
+
+private static long run(String[] args) throws IOException{
+    return countOrder(parseCommendLine(args));
+}
+
+private static long countOrder(CommendLine commendLine) throws IOException {
+    File input = Paths.get(commendLine.filename).toFile();
+    ObjectMapper mapper = new ObjectMapper();
+    Order[] orders = mapper.readValue(input, Order[].class);
+    if (commendLine.onlyCountReady)
+        return Stream.of(orders).filter(o -> "ready".equals(o.status)).count();
+    else
+        return orders.length;
+}
+
+private static CommendLine parseCommendLine(String[] args) {
+    if (args.length == 0) throw new RuntimeException("파일명을 입력하세요.");
+    CommendLine result = new CommendLine(args);
+    this.filename = args[args.length -1]
+    this.onlyCountReady = onlyCountReady = Stream.of(args).anyMatch(arg -> "-r".equals(arg));
+    return result;
+}
+
+private static class CommendLine {
+    String filename;
+    boolean onlyCountReady;
 }
