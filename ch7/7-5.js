@@ -1,11 +1,9 @@
 class Person {
   #name;
-  #officeAreaCode;
-  #officeNumber;
+  #telephoneNumber;
   constructor(name, areaCode, number) {
     this.#name = name;
-    this.#officeAreaCode = areaCode;
-    this.#officeNumber = number;
+    this.#telephoneNumber = new TelephoneNumber(areaCode, number);
   }
 
   get name() {
@@ -17,11 +15,11 @@ class Person {
   }
 
   get telephoneNumber() {
-    return `(${this.officeAreaCode}) ${this.officeNumber}`;
+    return this.#telephoneNumber.toString;
   }
 
   get officeAreaCode() {
-    return this.#officeAreaCode;
+    return this.#telephoneNumber.areaCode;
   }
 
   set officeAreaCode(arg) {
@@ -36,6 +34,37 @@ class Person {
     this.#officeNumber = arg;
   }
 }
+
+class TelephoneNumber {
+  #areaCode;
+  #number;
+  constructor(areaCode, number) {
+    this.#areaCode = areaCode;
+    this.#number = number;
+    this._number = number;
+  }
+
+  get areaCode() {
+    return this.#areaCode;
+  }
+  set areaCode(arg) {
+    this.#areaCode = arg;
+  }
+
+  get number() {
+    return this._number;
+  }
+  set number(arg) {
+    this._number = arg;
+  }
+
+  get toString() {
+    return `(${this.#areaCode}) ${this.#number}`
+  }
+}
+
+const telephoneNumber = new TelephoneNumber('010', '12341234');
+telephoneNumber.toString;
 
 const person = new Person('홍길동', '010', '12341234');
 console.log(person.name);
