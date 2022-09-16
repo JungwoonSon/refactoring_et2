@@ -6,16 +6,16 @@ class Person {
     this.#department = department;
   }
 
+  get manager() {
+    return this.#department.manager;
+  }
+
+  get chargeCode() {
+    return this.#department.chargeCode;
+  }
+
   get name() {
     return this.#name;
-  }
-
-  get department() {
-    return this.#department;
-  }
-
-  set department(arg) {
-    this.#department = arg;
   }
 }
 
@@ -46,5 +46,5 @@ export class Department {
 
 const person = new Person('Tom', new Department('aManager', '999'));
 console.log(person.name);
-console.log(person.department.manager);
-console.log(person.department.chargeCode);
+console.log(person.manager);
+console.log(person.chargeCode);
